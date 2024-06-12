@@ -18,6 +18,8 @@ export default function PokemonCard({ pokemon }) {
     );
 }
 
+
+// I will get an error message in console.log . is it this message? https://app.screencast.com/Q9aLiFmqzI0Z4
 PokemonCard.propTypes = {
     pokemon: PropTypes.shape({
         name: PropTypes.string.isRequired,
