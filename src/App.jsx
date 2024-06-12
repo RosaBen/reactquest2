@@ -3,7 +3,7 @@ import PokemonCard from "./components/PokemonCard"
 
 const pokemonList = [
   {
-    name: "bulbasaur",
+    // name: "bulbasaur",
     imgSrc:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
   },
@@ -15,7 +15,10 @@ const pokemonList = [
 function App() {
   
   return (
-    <div><PokemonCard pokemon={pokemonList[1]}/></div>
+    <div>
+      <PokemonCard pokemon={pokemonList[0]}/>
+      <PokemonCard pokemon={pokemonList[1]} />
+    </div>
   )
 
 }
