@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import PokemonCard from "./components/PokemonCard";
+import NavBar from "./components/NavBar";
+
+import "./App.css";
+
+const pokemonList = [
+  {
+    name: "bulbasaur",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+  },
+  {
+    name: "charmander",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  },
+  {
+    name: "squirtle",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  },
+  {
+    name: "pikachu",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+  },
+  {
+    name: "mew",
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pokemonIndex, setIndex] = useState(0);
+
+  //  si pokemonIndex est > 0, donc retire  1 à set Index de pokemonIndex sinon mets la taille du tableau -1 (index commence par 0 donc la longueur doit deduire 1 pour tomber sur le numéro correct)
+  const handlePrev = () => {
+    setIndex(pokemonIndex > 0 ? pokemonIndex - 1 : pokemonList.length - 1);
+  };
+  //  si pokemonIndex est < la taille du tableau -1 (index commence par 0 donc la longueur doit deduire 1 pour tomber sur le numéro correct), donc rajoute  1 à set Index de pokemonIndex sinon mets zéro pour repartir de index 0
+  const handleNext = () => {
+    setIndex(pokemonIndex < pokemonList.length - 1 ? pokemonIndex + 1 : 0);
+  };
 
   return (
-    <>
+    <section>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <PokemonCard pokemon={pokemonList[pokemonIndex]} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <NavBar
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+        pokemonIndex={pokemonIndex}
+        pokemonList={pokemonList}
+      />
+    </section>
+  );
 }
 
-export default App
+export default App;
