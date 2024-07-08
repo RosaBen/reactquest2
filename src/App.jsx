@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PokemonCard from "./components/PokemonCard";
 import NavBar from "./components/NavBar";
 import "./styles/navbar.css";
@@ -42,6 +42,10 @@ function App() {
   const handleNext = () => {
     setIndex(pokemonIndex < pokemonList.length - 1 ? pokemonIndex + 1 : 0);
   };
+
+  useEffect(() => {
+    alert("hello pokemon trainer :)");
+  }, []);
 
   return (
     <section>
