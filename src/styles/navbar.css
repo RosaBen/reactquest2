@@ -1,0 +1,12 @@
+.nav-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-buttons li {
+  list-style: none;
+}
+
+.nav-buttons button {
+  background-color: aqua;
+}
