@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 
-function NavBar({ pokemonList }) {
+function NavBar({ pokemonList, setPokemonIndex }) {
   const handleClick = (index) => {
     const selectedPokemon = pokemonList[index];
+    setPokemonIndex(index);
     alert(selectedPokemon.name);
   };
   return (
