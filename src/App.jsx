@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import PokemonCard from "./components/PokemonCard";
-import NavBar from "./components/NavBar";
-import "./styles/navbar.css";
+import { useState } from "react";
 
-import "./App.css";
+import NavBar from "./components/NavBar";
+import PokemonCard from "./components/PokemonCard";
 
 const pokemonList = [
   {
@@ -32,33 +30,20 @@ const pokemonList = [
 ];
 
 function App() {
-  const [pokemonIndex, setIndex] = useState(0);
+  const [pokemonIndex, setPokemonIndex] = useState(0);
 
-  //  si pokemonIndex est > 0, donc retire  1 à set Index de pokemonIndex sinon mets la taille du tableau -1 (index commence par 0 donc la longueur doit deduire 1 pour tomber sur le numéro correct)
-  const handlePrev = () => {
-    setIndex(pokemonIndex > 0 ? pokemonIndex - 1 : pokemonList.length - 1);
-  };
-  //  si pokemonIndex est < la taille du tableau -1 (index commence par 0 donc la longueur doit deduire 1 pour tomber sur le numéro correct), donc rajoute  1 à set Index de pokemonIndex sinon mets zéro pour repartir de index 0
-  const handleNext = () => {
-    setIndex(pokemonIndex < pokemonList.length - 1 ? pokemonIndex + 1 : 0);
-  };
-
-  useEffect(() => {
-    alert("hello pokemon trainer :)");
-  }, []);
-
+  // useEffect(() => {
+  //   alert("hello pokemon trainer :)");
+  // }, []);
   return (
-    <section>
-      <div>
-        <PokemonCard pokemon={pokemonList[pokemonIndex]} />
-      </div>
+    <div>
       <NavBar
-        handlePrev={handlePrev}
-        handleNext={handleNext}
         pokemonIndex={pokemonIndex}
+        setPokemonIndex={setPokemonIndex}
         pokemonList={pokemonList}
       />
-    </section>
+      <PokemonCard pokemon={pokemonList[pokemonIndex]} />
+    </div>
   );
 }
 

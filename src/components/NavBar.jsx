@@ -1,22 +1,32 @@
-export default function NavBar({
-  handlePrev,
-  handleNext,
-  pokemonIndex,
-  pokemonList,
-}) {
+import PropTypes from "prop-types";
+
+function NavBar({ pokemonList }) {
+  const handleClick = (index) => {
+    const selectedPokemon = pokemonList[index];
+    alert(selectedPokemon.name);
+  };
   return (
-    // <div className="nav-buttons">
-    //   {pokemonIndex > 0 && <button onClick={handlePrev}>Précédent</button>}
-    //   {pokemonIndex < pokemonList.length - 1 && (
-    //     <button onClick={handleNext}>Suivant</button>
-    //   )}
-    // </div>
-    <ul className="nav-buttons">
+    <div>
       {pokemonList.map((pokemon, index) => (
-        <li key={pokemon.name}>
-          <button onClick={() => handlePrev(index)}>{pokemon.name}</button>
-        </li>
+        <button
+          type="button"
+          onClick={() => handleClick(index)}
+          key={pokemon.name}>
+          {pokemon.name}
+        </button>
       ))}
-    </ul>
+    </div>
   );
 }
+
+NavBar.propTypes = {
+  setPokemonIndex: PropTypes.func.isRequired,
+  pokemonList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      imgSrc: PropTypes.string,
+    })
+  ).isRequired,
+};
+
+export default NavBar;
